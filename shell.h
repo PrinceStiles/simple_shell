@@ -121,7 +121,7 @@ int loophsh(char **);
 
 /* toem_errors.c */
 int _putsfd(char c, int fd);
-int _eputchar(char);
+int eput_char(char);
 void _eputs(char *);
 int _putsfd(char *str, int fd_;
 
@@ -166,10 +166,10 @@ int responsive(info_t *);
 
 /* toem_errors1.c */
 void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
+int print_dec(int, int);
+char *convert_num(long int, int, int);
 void remove_comments(char *);
-int _erratoi(char *);
+int error_atoi(char *);
 
 /* toem_builtin.c */
 int _myexit(info_t *);
