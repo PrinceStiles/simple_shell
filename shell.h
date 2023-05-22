@@ -30,7 +30,7 @@
 #define CONVERT_LOWERCASE	1 /* for convert_number() */
 #define	CONVERT_UNSIGNED	2
 
-extern char **environ;
+extern char **environment;
 
 /**
  * struct liststr - singly linked list
@@ -177,7 +177,7 @@ int _myhelp(info_t *);
 int _mycd(info_t *);
 
 /* toem_getline.c */
-void signintHandler(int);
+void sigHandler(int);
 int _getline(info_t *, char **, size_t *);
 ssize_t get_input(info_t *);
 
