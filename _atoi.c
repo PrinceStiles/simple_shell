@@ -9,7 +9,7 @@
 
 int responsive(info_t *info)
 {
-    return (isatty(STDIN_FILENO) && info->readfd <=2);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
@@ -21,12 +21,12 @@ int responsive(info_t *info)
 
 int is_delimeter(char Char, char *delimeter)
 {
-    while (*delimeter)
-    {
-        if (*delimeter++ == c)
-        return (1);
-    }
-    return (0);
+	while (*delimeter)
+	{
+		if (*delimeter++ == c)
+			return (1);
+	}
+	return (0);
 }
 
 /**
@@ -37,10 +37,10 @@ int is_delimeter(char Char, char *delimeter)
 
 int _isalphabet(int Char)
 {
-    if ((Char >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-        return (1);
-    else
-        return (0);
+	if ((Char >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		return (1);
+	else
+		return (0);
 }
 
 /**
@@ -51,27 +51,27 @@ int _isalphabet(int Char)
 
 int _atoi(char *Str)
 {
-    int i, sign = 1, flag = 0, output;
-    unsigned int result = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-    for (i = 0; Str[i] != '\0' && flag != 2; i++)
-    {
-        if (Str[i] == '-')
-            sign *= -1;
+	for (i = 0; Str[i] != '\0' && flag != 2; i++)
+	{
+		if (Str[i] == '-')
+			sign *= -1;
 
-        if (Str[i] >= '0' && Str[i] <= '9')
-        {
-            flag = 1;
-            result *= 10;
-            result += (Str[i] - '0');
-        }
-        else if (flag == 1)
-            flag = 2
-    }
+		if (Str[i] >= '0' && Str[i] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (Str[i] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+		}
 
-    if (sign == -1)
-        output = -result;
-    else
-        output = result
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
 }
 
