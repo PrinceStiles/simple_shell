@@ -37,7 +37,7 @@ int is_delimeter(char Char, char *delimeter)
 
 int _isalphabet(int Char)
 {
-	if ((Char >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+	if ((Char >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
 	else
 		return (0);
