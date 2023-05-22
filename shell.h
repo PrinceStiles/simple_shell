@@ -30,7 +30,7 @@
 #define CONVERT_LOWERCASE	1 /* for convert_number() */
 #define	CONVERT_UNSIGNED	2
 
-extern char **environment;
+extern char **environ;
 
 /**
  * struct liststr - singly linked list
