@@ -155,14 +155,14 @@ char *_memset(char *, char, unsigned int);
 int bfree(void **);
 
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int my_history(info_t *);
+int my_alias(info_t *);
 
 /* toem_atoi.c */
 int _atoi(char *);
-int _isalpha(int);
-int is_delim(char, char *);
-int interactive(info_t *);
+int _isalphabet(int);
+int is_delimeter(char, char *);
+int responsive(info_t *);
 
 /* toem_errors1.c */
 void print_error(info_t *, char *);
