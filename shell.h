@@ -195,8 +195,8 @@ char **get_environ(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
+char *get_env(info_t *, const char *);
+int my_env(info_t *);
 
 /* toem_history.c */
 int read_history(info_t *info);
