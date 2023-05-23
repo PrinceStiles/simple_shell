@@ -125,7 +125,7 @@ int eput_char(char);
 void _eputs(char *);
 int _putsfd(char *str, int fd_;
 
-/* toem_string.c */
+/* toem_stringfunc.c */
 char *starts_with(const char *, const char *);
 int _strcmp(char *, char *);
 int _strlen(char *);
@@ -146,12 +146,12 @@ char *_strchr(char *, char);
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
-/* toem_realloc.c */
+/* toem_reallocfunc.c */
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 char *_memset(char *, char, unsigned int);
 
-/* toem_memory.c */
+/* toem_memory1.c */
 int bfree(void **);
 
 /* toem_builtin1.c */
