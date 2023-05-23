@@ -19,7 +19,7 @@ int responsive(info_t *info)
  *Return: 1 if true, 0 if false
  */
 
-int is_delimeter(char Char, char *delimeter)
+int is_delimiter(char Char, char *delimeter)
 {
 	while (*delimeter)
 	{
@@ -30,7 +30,7 @@ int is_delimeter(char Char, char *delimeter)
 }
 
 /**
- *_isalphabetic - checks for the alphabetic character
+ *_isalphabet - checks for the alphabetic character
  *@Char: the Character to input
  *Return: 1 if c is alphabetic, 0 otherwise
  */
