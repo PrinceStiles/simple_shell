@@ -15,15 +15,15 @@ int responsive(info_t *info)
 /**
  *is_delimiter - checks if the character is a delimiter
  *@Char: the character to check
- *@delimeter: the delimiter string
+ *@delimiter: the delimiter string
  *Return: 1 if true, 0 if false
  */
 
 int is_delimiter(char Char, char *delimeter)
 {
-	while (*delimeter)
+	while (*delimiter)
 	{
-		if (*delimeter++ == c)
+		if (*delimiter++ == c)
 			return (1);
 	}
 	return (0);
