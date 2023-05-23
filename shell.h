@@ -205,7 +205,7 @@ char *get_history_file(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 
-/* toem_vars.c */
+/* toem_vars1.c */
 int replace_vars(info_t *);
 int replace_alias(info_t *);
 int replace_string(char **, char *);
