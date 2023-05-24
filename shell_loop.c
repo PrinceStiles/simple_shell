@@ -2,38 +2,38 @@
 
 /**
  * hsh - main shell loop
- * @av: arg vect. from main
- * Return: 0 on success, 1 on error
+ * @info: the parameter & return info struct
+ * @av: the argument vector from main()
+ * Return: 0 on success, 1 on error, or error code
  */
 int hsh(info_t *info, char **av)
 {
-	size_t r = 0;
+	ssize_t r = 0;
 	int builtin_ret = 0;
 
 	while (r != -1 && builtin_ret != -2)
 	{
 		clear_info(info);
-		if (interactive(info))
-			_puts("$");
-		_eputchar(BUF_FLUSH);
+		if (responsive(info))
+			_puts("$ ");
+		eput_char(BUF_FLUSH);
 		r = get_input(info);
 		if (r != -1)
 		{
-
 			set_info(info, av);
 			builtin_ret = find_builtin(info);
 			if (builtin_ret == -1)
 				find_cmd(info);
 		}
-		else if (interactive(info))
+		else if (responsive(info))
 			_putchar('\n');
 		free_info(info, 0);
 	}
 	write_history(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->status)
+	if (!responsive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == 2)
+	if (builtin_ret == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
@@ -43,13 +43,47 @@ int hsh(info_t *info, char **av)
 }
 
 /**
- * find_cmd -this func finds a command in PATH
- * @info: the param and return info struct
+ * find_builtin - finds a builtin command
+ * @info: the parameter & return info struct
+ *
+ * Return: -1 if builtin not found,
+ *	0 if builtin executed successfully,
+ *	1 if builtin found but not successful,
+ *	2 if builtin signals exit()
+ */
+int find_builtin(info_t *info)
+{
+	int i, built_in_ret = -1;
+	builtin_table builtintbl[] = {
+		{"exit", _myexit},
+		{"env", _myenv},
+		{"help", _myhelp},
+		{"history", my_history},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv},
+		{"cd", _mycd},
+		{"alias", my_alias},
+		{NULL, NULL}
+	};
+
+	for (i = 0; builtintbl[i].type; i++)
+		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+		{
+			info->line_count++;
+			built_in_ret = builtintbl[i].func(info);
+			break;
+		}
+	return (built_in_ret);
+}
+
+/**
+ * find_cmd - finds a command in PATH
+ * @info: the parameter & return info struct
  * Return: void
  */
 void find_cmd(info_t *info)
 {
-	char *PATH = NULL;
+	char *path = NULL;
 	int i, k;
 
 	info->path = info->argv[0];
@@ -59,21 +93,22 @@ void find_cmd(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+		if (!is_delimiter(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
-	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+
+	path = find_path(info, get_env(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
-		for_cmd(info);
+		fork_cmd(info);
 	}
 	else
 	{
-	if ((interactive(info) || _getenv(info, "PATH=")
-				|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
-fork_cmd(info);
+		if ((responsive(info) || get_env(info, "PATH=")
+					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
@@ -83,9 +118,10 @@ fork_cmd(info);
 }
 
 /**
- * fork_cmd - this func forks an exex thread to run cmd
- * @info: the param and return info struct
- * Return: returns void
+ * fork_cmd - forks a an exec thread to run cmd
+ * @info: the parameter & return info struct
+ *
+ * Return: void
  */
 void fork_cmd(info_t *info)
 {
@@ -94,6 +130,7 @@ void fork_cmd(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
+		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
@@ -106,6 +143,7 @@ void fork_cmd(info_t *info)
 				exit(126);
 			exit(1);
 		}
+		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
@@ -119,35 +157,3 @@ void fork_cmd(info_t *info)
 	}
 }
 
-/**
- * find_builtin - finds a builtin command
- * @info: the param and return info struct
- * Return: -1 if builtin is not found
- * 0 if buitin executes suuccessfully
- * 1 if builtin is found but not successful and
- * -2 if builtin signals exit()
- */
-int find_builtin(info_t *info)
-{
-	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myexit},
-		{"help", _myhelp},
-		{"history", _myhistory},
-		{"setenv", _myunsetenv},
-		{"cd", _mycd},
-		{"alias", _myalias},
-		{NULL, NULL}
-	};
-
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
-		{
-			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
-
-			break;
-		}
-	return (built_in_ret);
-}
