@@ -19,11 +19,11 @@ int responsive(info_t *info)
  *Return: 1 if true, 0 if false
  */
 
-int is_delimiter(char Char, char *delimeter)
+int is_delimiter(char Char, char *delimiter)
 {
 	while (*delimiter)
 	{
-		if (*delimiter++ == c)
+		if (*delimiter++ == Char)
 			return (1);
 	}
 	return (0);
@@ -37,7 +37,7 @@ int is_delimiter(char Char, char *delimeter)
 
 int _isalphabet(int Char)
 {
-	if ((Char >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((Char >= 'a' && Char <= 'z') || (Char >= 'A' && Char <= 'Z'))
 		return (1);
 	else
 		return (0);

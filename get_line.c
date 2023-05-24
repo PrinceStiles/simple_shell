@@ -1,5 +1,20 @@
 #include "shell.h"
 
+void sigHandler(int sig_num);
+ssize_t my_getline(info_t *info, char **ptr, size_t *length);
+void remove_comments(char *buf);
+void build_history_list(info_t *info, char *command, int histcount);
+void _putchar(char c);
+void check_chain(info_t *info, char **buf, int *j, int i, size_t len);
+int is_chain(info_t *info, char **buf, int *j);
+size_t _strlen(const char *s);
+ssize_t read_buffer(info_t *info, char *buf, size_t *i);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_strchr(char *s, char c);
+char *_strncat(char *dest, char *src, int n);
+char *_strncpy(char *dest, char *src, int n);
+void _puts(const char *str);
+
 /**
  * input_buffer - buffers chained commands
  * @info: parameter struct
@@ -55,7 +70,7 @@ ssize_t get_input(info_t *info)
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = input_buf(info, &buf, &len);
+	r = input_buffer(info, &buf, &len);
 	if (r == -1) /* EOF */
 		return (-1);
 	if (len) /* commands left in the chain buffer */

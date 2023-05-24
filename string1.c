@@ -1,5 +1,7 @@
 #include "shell.h"
 
+int _putchar(char c);
+
 /**
  * _strcpy -  copies a string
  * @dest: the dest

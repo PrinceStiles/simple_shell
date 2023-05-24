@@ -1,5 +1,7 @@
 #include "shell.h"
 
+int eput_char(char c);
+
 /**
  * _eputs - prints an input string
  * @str: the string to be printed
@@ -32,7 +34,7 @@ int eput_char(char c)
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, i);
+		fwrite(buf, sizeof(char), i, stderr);
 		i = 0;
 	}
 	if (c != BUF_FLUSH)

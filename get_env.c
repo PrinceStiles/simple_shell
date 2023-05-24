@@ -1,5 +1,7 @@
 #include "shell.h"
 
+char **list_to_strings(list_t *);
+
 /**
  * get_environ - returns the string array copy of our environ
  * @info: Structure containing potential arguments. Used to keep
