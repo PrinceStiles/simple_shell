@@ -94,6 +94,12 @@ typedef struct passinfo
 {
 	(NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,
 0, 0, 0)
+=======
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+0, 0, 0}
+
+>>>>>>> 32e8269e173f2900bcb45116a8d9c42d327730bd
 
 /**
  * struct builtin - contains builtin string and related function
@@ -121,10 +127,10 @@ char *find_path(info_t *, char *, char *);
 int loophsh(char **);
 
 /* toem_handle_errors.c */
-int _putsfd(char c, int fd);
+int _putfd(char c, int fd);
 int eput_char(char);
 void _eputs(char *);
-int _putsfd(char *str, int fd_;
+int _putsfd(char *str, int fd);
 
 /* toem_stringfunc.c */
 char *starts_with(const char *, const char *);
