@@ -15,7 +15,7 @@ int hsh(info_t *info, char **av)
 	{
 		clear_info(info);
 		if (responsive(info))
-			_puts("sh:) ");
+			_puts("sh_:) ");
 		eput_char(BUF_FLUSH);
 		r = get_input(info);
 		if (r != -1)
