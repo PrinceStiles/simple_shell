@@ -90,16 +90,9 @@ typedef struct passinfo
 	char **cmd_buf;
 } info_t;
 
-#define INFO_INIT
-{
-	(NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,
-0, 0, 0)
-=======
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
-
->>>>>>> 32e8269e173f2900bcb45116a8d9c42d327730bd
 
 /**
  * struct builtin - contains builtin string and related function
