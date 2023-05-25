@@ -51,7 +51,7 @@ int _isalphabet(int Char)
 
 int _atoi(char *Str)
 {
-	int i, sign = 1, flag = 0, output;
+	int i, sign = 1, flag = 0;
 	unsigned int result = 0;
 
 	for (i = 0; Str[i] != '\0' && flag != 2; i++)
@@ -59,19 +59,19 @@ int _atoi(char *Str)
 		if (Str[i] == '-')
 			sign *= -1;
 
-		if (Str[i] >= '0' && Str[i] <= '9')
-		{
-			flag = 1;
-			result *= 10;
-			result += (Str[i] - '0');
-		}
-		else if (flag == 1)
-			flag = 2;
-		}
+	if (Str[i] >= '0' && Str[i] <= '9')
+	{
+		flag = 1;
+		result *= 10;
+		result += (Str[i] - '0');
+	}
+	else if (flag == 1)
+		flag = 2;
+	}
 
 	if (sign == -1)
-		output = -result;
+		return -result;
 	else
-		output = result;
+		return result;
 }
 

@@ -90,9 +90,10 @@ typedef struct passinfo
 	char **cmd_buf;
 } info_t;
 
-#define INFO_INIT
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
+
 
 /**
  * struct builtin - contains builtin string and related function
@@ -120,10 +121,10 @@ char *find_path(info_t *, char *, char *);
 int loophsh(char **);
 
 /* toem_handle_errors.c */
-int _putsfd(char c, int fd);
+int _putfd(char c, int fd);
 int eput_char(char);
 void _eputs(char *);
-int _putsfd(char *str, int fd_;
+int _putsfd(char *str, int fd);
 
 /* toem_stringfunc.c */
 char *starts_with(const char *, const char *);

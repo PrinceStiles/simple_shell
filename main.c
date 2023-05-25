@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av)
 {
-	info_t info[] = { INFO_INIT };
+	info_t info[] = { {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, NULL} };
 	int fd = 2;
 
 	asm("mov %1, %0\n\t"
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info[0].readfd = fd;
 	}
 	populate_env_list(info);
 	read_history(info);
